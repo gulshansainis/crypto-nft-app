@@ -39,7 +39,7 @@
                 }]
             });
 
-            $.get("/static/stock-price.csv", getDataPointsFromCSV);
+            $.get("./static/stock-price.csv", getDataPointsFromCSV);
 
             function getDataPointsFromCSV(csv) {
                 var csvLines = points = [];
