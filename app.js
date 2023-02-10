@@ -22,13 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tokens.forEach(token => {
         token.addEventListener('click', () => {
-            window.location.assign('/price.html');
+            let currentPath = window.location.pathname;
+            window.location.assign(currentPath.replace('index.html', 'price.html'));
         })
     });
 
     cryptoCards.forEach(card => {
         card.addEventListener('click', () => {
-            window.location.assign('/token.html');
+            let currentPath = window.location.pathname;
+            window.location.assign(currentPath.replace('index.html', 'token.html'));
         })
     })
 
