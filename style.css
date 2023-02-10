@@ -1,0 +1,433 @@
+:root {
+    --color-primary: #0E0E18;
+    --color-secondary: #5957BB;
+    --color-accent: #BAE399;
+    --color-white: #fff;
+    --color-grey: #35333f;
+    --color-grey-light: #c9c9c9;
+}
+
+@font-face {
+    font-family: "TTInterfaces-Regular";
+    src: url(/static/TTInterfaces-Regular.ttf);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    /* max-width: 600px; */
+    margin: 0 auto;
+    color: #fff;
+    font-family: 'TTInterfaces-Regular', 'Times New Roman', Times, serif;
+    background-color: #0e0e19;
+}
+
+.container {
+    width: 98%;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    position: sticky;
+    top: 0px;
+    background-color: var(--color-primary);
+    z-index: 10;
+    padding: 70px 10px 10px;
+}
+
+#account-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-bottom: 30px;
+}
+
+#account-details div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    animation: moving-top-to-down 1s;
+}
+
+#account-details div .your-balance {
+    color: #6f6e77;
+}
+
+#account-details div .your-balance-amount {
+    font-size: 1.8rem;
+}
+
+#account-details .add-money {
+    width: 56px;
+    height: 56px;
+    border: none;
+    color: #000;
+    background-color: #fff;
+    font-size: 1.8rem;
+    border-radius: 15px;
+}
+
+
+/* main */
+.crypto-tokens {
+    display: flex;
+    overflow-x: scroll;
+    margin-bottom: 2px;
+}
+
+.crypto-tokens::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    /* make scrollbar transparent */
+}
+
+.token {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 15px;
+    margin-right: 2px;
+    background-color: var(--color-grey);
+}
+
+.token:active {
+    scale: .98;
+}
+
+.crypto-tokens:first-of-type>.token:nth-child(3) {
+    color: var(--color-primary);
+    background-color: var(--color-accent);
+}
+
+.token-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: var(--color-white);
+}
+
+.token-icon i {
+    color: var(--color-primary);
+}
+
+/* crypto-cards */
+.crypto-cards {
+    display: flex;
+    flex-direction: column;
+    /* width: 300px; */
+    padding: 0 2px;
+}
+
+.crypto-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    position: relative;
+    animation: moving-bottom-to-top 1s;
+}
+
+@keyframes moving-bottom-to-top {
+    from {
+        top: 30px;
+    }
+
+    to {
+        top: 0px;
+    }
+}
+
+.crypto-card .card-header {
+    border-radius: 15px;
+}
+
+.crypto-card .card-header img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.crypto-card .card-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--color-grey);
+}
+
+.crypto-card .card-footer .icon-price-wrapper {
+    display: flex;
+}
+
+.crypto-card .card-footer .icon-price-wrapper .icon {
+    margin-right: 10px;
+}
+
+/* token price details page */
+#token-details {
+    margin-bottom: 30px;
+    padding: 0 5%;
+}
+
+#token-details .token-details-header {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+}
+
+#back-button {
+    width: 15%;
+    animation: tada 1s;
+}
+
+@keyframes tada {
+    0% {
+        transform: rotate(30deg);
+    }
+
+    80% {
+        transform: rotate(0);
+    }
+}
+
+.token-title {
+    width: 85%;
+}
+
+.token-title i {
+    position: relative;
+    animation: grow 1s;
+}
+
+.token-title span {
+    position: relative;
+    animation: moving-top-to-down 1s;
+}
+
+@keyframes grow {
+    from {
+        scale: 30%;
+    }
+    to {
+        scale: 100%;
+    }
+}
+
+.token-title i {
+    margin-right: 10px;
+}
+
+#token-details .token-details-price {
+    display: flex;
+    align-items: flex-end;
+}
+
+#token-details .token-details-price .current-price {
+    font-size: 3rem;
+    line-height: 50px;
+    margin-right: 10px;
+    min-width: 200px;
+}
+
+#token-details .token-details-price .percentage-change {
+    font-size: .75rem;
+    color: var(--color-accent);
+    position: relative;
+    animation: moving-top-to-down 1s;
+}
+
+@keyframes moving-top-to-down {
+    from {
+        top: -20px;
+    }
+
+    to {
+        top: 0px;
+    }
+}
+
+.time-periods {
+    display: flex;
+    overflow: scroll;
+    margin-bottom: 30px;
+}
+
+.time-periods div:active {
+    scale: .98;
+}
+
+.time-periods::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.chart-period {
+    padding: 10px;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    border-radius: 15px;
+    margin-right: 10px;
+    background-color: var(--color-grey);
+}
+
+.chart-period.selected {
+    color: var(--color-grey);
+    background-color: var(--color-white);
+}
+
+/* CTA */
+.cta-button {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin: 0 1%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cta-button button {
+    padding: 10px 40px;
+    border: 0;
+    border-radius: 15px;
+    font-size: 2rem;
+    width: 50%;
+}
+
+.cta-button button:active {
+    scale: .98;
+}
+
+.cta-button .sell {
+    background-color: var(--color-secondary);
+    margin-right: 2px;
+    color: var(--color-white);
+}
+
+.cta-button .buy {
+    background-color: var(--color-accent);
+}
+
+.cta-button .place-bid {
+    width: 100%;
+    background-color: var(--color-accent);
+}
+
+.cta-button .sell i {
+    transform: rotate(135deg);
+}
+
+.cta-button .buy i {
+    transform: rotate(215deg);
+}
+
+.cta-button .place-bid i {
+    transform: rotate(180deg);
+}
+
+/* Token page */
+header.token-details-hero-img {
+    padding: 0;
+    margin: 0;
+    left:0;
+    right:0;
+}
+
+header.token-details-hero-img #back-button {
+    top: 70px;
+    position: fixed;
+    padding: 0 15px;
+    font-size: 1.6rem;
+    color: var(--color-primary);
+}
+
+.token-details-section {
+    padding: 15px;
+}
+
+.token-details-image img {
+    width: 100%;
+    margin-top: -15px;
+    border-radius: 30px;
+}
+
+.token-details-title {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.token-details-creator__subheading {
+    font-size: .8rem;
+    color: #75767d;
+}
+
+.token-price-tracker {
+    display: flex;
+    font-size: 1.5rem;
+}
+
+.current_date {
+    color: var(--color-grey-light);
+}
+
+.token-price-tracker .current_date {
+    width: 50%;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-grey);
+    margin-right: 3px;
+    border-radius: 15px;
+}
+
+.token-price-tracker .icon-price-wrapper {
+    width: 50%;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-grey);
+    border-radius: 15px;
+}
+
+.token-price-tracker .icon-price-wrapper .icon {
+    margin-right: 10px;
+}
+
+.token-details-creator__user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.token-details-creator__handle {
+    font-size: 1.5rem;
+}
+
+.token-details-creator__handle i {
+    color: yellow;
+}
+
+.token-details-creator__usericon {
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--color-grey);
+}

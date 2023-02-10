@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethereu - Crypto NFT App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="app.js"></script>
+    <script>
+        window.onload = function () {
+
+            let dataPoints = [];
+
+            let chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                animationDuration: 500,
+                theme: "dark2",
+                exportEnabled: false,
+                backgroundColor: "#0E0E18",
+                axisX: {
+                    labelFormatter: function () {
+                        return " ";
+                    }
+                },
+                axisY: {
+                    labelFormatter: function () {
+                        return " ";
+                    }
+                },
+                data: [{
+                    type: "candlestick",
+                    yValueFormatString: "$##0.00",
+                    dataPoints: dataPoints,
+                    risingColor: "#BAE399",
+                    fallingColor: "#5957BB"
+                }]
+            });
+
+            $.get("/static/stock-price.csv", getDataPointsFromCSV);
+
+            function getDataPointsFromCSV(csv) {
+                var csvLines = points = [];
+                csvLines = csv.split(/[\r?\n|\r|\n]+/);
+                for (var i = 0; i < csvLines.length; i++) {
+                    if (csvLines[i].length > 0) {
+                        points = csvLines[i].split(",");
+                        dataPoints.push({
+                            x: new Date(
+                                parseInt(points[0].split("-")[0]),
+                                parseInt(points[0].split("-")[1]),
+                                parseInt(points[0].split("-")[2])
+                            ),
+                            y: [
+                                parseFloat(points[1]),
+                                parseFloat(points[2]),
+                                parseFloat(points[3]),
+                                parseFloat(points[4])
+                            ]
+                        });
+                    }
+                }
+                chart.render();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div id="token-details">
+                <div class="token-details-header">
+                    <div id="back-button"><i class="fa-solid fa-arrow-left"></i></div>
+                    <div class="token-title"><i class="fa-brands fa-ethereum"></i><span>ethereum</span></div>
+                </div>
+                <div class="token-details-price">
+                    <div id="current-stock-price" class="current-price">$1579.88</div>
+                    <div class="percentage-change">+11.62 (0.74%)</div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="time-periods">
+                <div class="chart-period">15 min</div>
+                <div class="chart-period selected" data-period="1h">1 h</div>
+                <div class="chart-period" data-period="1d">1 d</div>
+                <div class="chart-period" data-period="1w">1 w</div>
+                <div class="chart-period" data-period="1m">1 m</div>
+                <div class="chart-period" data-period="1y">1 y</div>
+            </div>
+            <div id="chartContainer" style="height: 300px;  margin: 0px auto;"></div>
+            <div class="cta-button">
+                <button class="sell">sell <i class="fa-solid fa-arrow-left"></i></button>
+                <button class="buy">buy <i class="fa-solid fa-arrow-left"></i></button>
+            </div>
+        </main>
+    </div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+</body>
+
+</html>
